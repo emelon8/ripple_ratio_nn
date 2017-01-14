@@ -42,8 +42,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # load ripple ratio data
-data_all=np.load('rippleratio_data.npz')
-additional_inputs=np.load('additional_inputs.npz')
+data_all=np.load('data/rippleratio_data.npz')
+additional_inputs=np.load('data/additional_inputs.npz')
 num_data=np.size(data_all['rippleratio'])
 y_data_all=np.reshape(data_all['rippleratio'], (num_data, 1))
 x_data_all=np.reshape(np.array(np.meshgrid(data_all['DCp']*2, data_all['DCi'])).T, (num_data, 2)) # multiply DCp by 2 for feature scaling
@@ -75,11 +75,9 @@ for j in range(dataset_sizes):
 
     x_data_train=x_data_train[:int(len(x_data_train)-(1*j)),:]
     y_data_train=y_data_train[:int(len(y_data_train)-(1*j)),:]
-    x_data_test=x_data_test[:int(len(x_data_test)-(1*j)),:]
-    y_data_test=y_data_test[:int(len(y_data_test)-(1*j)),:]
 
     # Create the model
-    input_nodes=9
+    input_nodes=3
     hidden_layer_nodes=50
     hidden_layer2_nodes=50
     #hidden_layer3_nodes=10
